@@ -22,17 +22,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# read from environment (set via Render dashboard or other hosting env)
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-hi99h^kpk!u03hxpp4gm_%hdzxs-+c66c#1feg7kye_h5og5zh')
+# read from environment (set via hosting provider or .env in development)
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-REPLACE_THIS_WITH_A_SECURE_KEY'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# default to False unless an env var is set
-DEBUG = os.environ.get('DEBUG', '') == '1'
+# default to False unless an env var is set to '1'
+DEBUG = os.environ.get('DEBUG', '0') == '1'
 
-ALLOWED_HOSTS = ['.onrender.com']
+# Hosts
+# Allow specifying hosts via ENV, default to all render subdomains and localhost for dev
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.onrender.com,localhost,127.0.0.1').split(',')
+
+# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
@@ -139,8 +145,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
