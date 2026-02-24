@@ -3,7 +3,7 @@ services:
     name: community-backend
     runtime: python
     buildCommand: bash ./build.sh
-    startCommand: gunicorn community.wsgi
+    startCommand: gunicorn --chdir community community.wsgi
     envVars:
       - key: SECRET_KEY
         generateValue: true

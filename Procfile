@@ -1,1 +1,1 @@
-web: gunicorn community.wsgi
+web: gunicorn --chdir community community.wsgi
