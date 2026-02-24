@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: community-backend
+    runtime: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn community.wsgi
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "0"
+      - key: PYTHON_VERSION
+        value: "3.11.4"
