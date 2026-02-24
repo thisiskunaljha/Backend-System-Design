@@ -1,53 +1,10 @@
-# Python
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual environments
 venv/
-ENV/
-env/
-.env
-.venv
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Database
 db.sqlite3
-db.sqlite3-journal
-
-# Django
-*.log
-/media/
-/staticfiles/
-/static/
-
-# OS
+staticfiles/
+*.zip
 .DS_Store
+__pycache__/
+*.pyc
 .AppleDouble
 .LSOverride
 Thumbs.db
@@ -56,3 +13,6 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+*.zip
+
