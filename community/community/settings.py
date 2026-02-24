@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # read from environment (set via hosting provider or .env in development)
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
-    'django-insecure-REPLACE_THIS_WITH_A_SECURE_KEY'
+    'django-insecure-dafef202879db7d68abc1a3982d40d60'
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # default to False unless an env var is set to '1'
-DEBUG = os.environ.get('DEBUG', '0') == '1'
+DEBUG = os.environ.get('DEBUG', '0') == '0'
 
 # Hosts
 # Allow specifying hosts via ENV, default to all render subdomains and localhost for dev
