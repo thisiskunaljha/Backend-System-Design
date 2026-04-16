@@ -140,7 +140,9 @@
         </div>
       </div>
         <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 10px;">
+          <a href="{% url 'feed_page' %}">Feed</a>
           {% if user.is_authenticated %}
+            <a href="{% url 'user_profile' user.username %}">My Profile</a>
             <span>Welcome <strong>{{ user.username }}</strong></span>
             <a href="{% url 'logout' %}">Logout</a>
           {% else %}

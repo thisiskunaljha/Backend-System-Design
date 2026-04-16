@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,6 +103,23 @@
             margin-top: 20px;
             font-size: 0.9rem;
         }
+        .social-google {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #d1d5db;
+        }
+        .social-google:hover {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
         .login-link a {
             color: #38bdf8;
             text-decoration: none;
@@ -121,25 +137,17 @@
             </div>
             <h2>Community Feed Login</h2>
             
-            {% if form.non_field_errors %}
-            <ul class="errorlist">
-                {% for error in form.non_field_errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            
             <form method="post">
                 {% csrf_token %}
                 
                 <div class="form-group">
                     <label>Username</label>
-                    {{ form.username }}
+                    <input type="text" name="username" required autofocus>
                 </div>
                 
                 <div class="form-group">
                     <label>Password</label>
-                    {{ form.password }}
+                    <input type="password" name="password" required>
                 </div>
                 
                 <div class="form-group">
@@ -147,6 +155,9 @@
                 </div>
             </form>
             
+            <div class="form-group">
+                <a href="{% url 'google_login' %}" class="social-google">Continue with Google</a>
+            </div>
             <div class="login-link">
                 Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>
             </div>

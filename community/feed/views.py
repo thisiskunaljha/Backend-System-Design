@@ -171,6 +171,33 @@ def feed(request):
     return render(request, 'feed/feed.html', {"posts": posts})
 
 
+def feed_page(request):
+    # Optional dedicated feed URL, identical to home feed
+    return feed(request)
+
+
+def user_profile(request, username):
+    profile_user = get_object_or_404(User, username=username)
+    posts = Post.objects.filter(author=profile_user).order_by("-created_at")
+    total_posts = posts.count()
+    total_likes = Like.objects.filter(post__author=profile_user).count()
+    total_comments = Comment.objects.filter(post__author=profile_user).count()
+
+    return render(request, 'feed/profile.html', {
+        'profile_user': profile_user,
+        'posts': posts,
+        'total_posts': total_posts,
+        'total_likes': total_likes,
+        'total_comments': total_comments,
+    })
+
+
+def profile_me(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return redirect('user_profile', username=request.user.username)
+
+
 def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

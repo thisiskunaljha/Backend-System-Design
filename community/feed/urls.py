@@ -15,6 +15,9 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
     path('signup/', views.signup_view, name='signup'),
+    path('profile/', views.profile_me, name='profile_me'),
+    path('profile/<str:username>/', views.user_profile, name='user_profile'),
+    path('feed/', views.feed_page, name='feed_page'),
     
     # API endpoints
     path('posts/', PostCreateView.as_view(), name='post-create'),
