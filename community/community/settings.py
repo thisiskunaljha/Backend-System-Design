@@ -197,3 +197,45 @@ SOCIALACCOUNT_PROVIDERS = {
 # Authentication
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
+
+# Security Headers & XSS Protection
+# ================================
+
+# Enable HTTPS in production
+SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False') == 'True'
+
+# Session and cookie security
+SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'False') == 'True'
+CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'False') == 'True'
+SESSION_COOKIE_HTTPONLY = True  # Prevents JavaScript access to session cookie
+CSRF_COOKIE_HTTPONLY = True  # Prevents JavaScript access to CSRF token
+
+# CSRF Protection (enabled by default)
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', 'localhost,127.0.0.1').split(',')
+
+# Content Security Policy
+SECURE_CONTENT_SECURITY_POLICY = {
+    "default-src": ("'self'",),
+    "script-src": ("'self'", "'unsafe-inline'"),  # unsafe-inline needed for inline CSS styles
+    "style-src": ("'self'", "'unsafe-inline'"),  # unsafe-inline for inline styles
+    "img-src": ("'self'", "data:", "https:"),
+    "font-src": ("'self'",),
+    "connect-src": ("'self'", "https://accounts.google.com"),
+    "frame-src": ("'self'", "https://accounts.google.com"),
+}
+
+# HTTP Security Headers
+SECURE_HSTS_SECONDS = 31536000  # 1 year (for production)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
+SECURE_BROWSER_XSS_FILTER = True  # Enable XSS filter in older browsers
+SECURE_CONTENT_SECURITY_POLICY_REPORT_ONLY = False  # Enforce CSP, don't just report
+
+# Additional Security Headers
+SECURE_REFERRER_POLICY = 'same-origin'  # Control referrer information
+PERMISSIONS_POLICY = {
+    'camera': '()',
+    'geolocation': '()',
+    'microphone': '()',
+}
