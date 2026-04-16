@@ -176,6 +176,24 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_LOGIN_METHODS = {'username'}
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
+# Social Account Settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'APP': {
+            'client_id': os.environ.get('SOCIAL_AUTH_GOOGLE_CLIENT_ID', ''),
+            'secret': os.environ.get('SOCIAL_AUTH_GOOGLE_SECRET', ''),
+            'key': '',
+        },
+    },
+}
+
 # Authentication
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
