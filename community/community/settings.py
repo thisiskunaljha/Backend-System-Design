@@ -29,12 +29,12 @@ SECRET_KEY = os.environ.get(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# default to False unless an env var is set to '1'
-DEBUG = os.environ.get('DEBUG', '0') == '1'
+# default to True for development, set DEBUG=0 for production
+DEBUG = os.environ.get('DEBUG', '1') != '0'
 
 # Hosts
 # Allow specifying hosts via ENV, default to all render subdomains and localhost for dev
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'backend-system-design.onrender.com,localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'backend-system-design.onrender.com,localhost,127.0.0.1,localhost:8000,127.0.0.1:8000,testserver').split(',')
 
 # Static files
 STATIC_URL = '/static/'
